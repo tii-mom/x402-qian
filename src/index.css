@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
 @import "tailwindcss";
 
 @theme {
   --font-pixel: "Press Start 2P", system-ui, sans-serif;
   --font-vt: "VT323", monospace;
-  --color-neon-green: #00FF41;
-  --color-neon-gold: #FFD700;
+  --color-neon-green: #00ff41;
+  --color-neon-gold: #ffd700;
   --color-dark-bg: #0a0a0c;
   --color-panel-bg: #111111;
 }
@@ -27,10 +27,20 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.06),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.06)
+    );
   z-index: 9999;
-  background-size: 100% 4px, 6px 100%;
+  background-size:
+    100% 4px,
+    6px 100%;
   pointer-events: none;
+  opacity: 0.15;
 }
 
 .crt::after {
@@ -41,45 +51,47 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  background: radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
   z-index: 10000;
   pointer-events: none;
 }
 
 .glow-text {
-  text-shadow: 0 0 5px var(--color-neon-green), 0 0 10px var(--color-neon-green);
+  text-shadow:
+    0 0 5px var(--color-neon-green),
+    0 0 10px var(--color-neon-green);
 }
 
 .glow-text-gold {
-  text-shadow: 0 0 5px var(--color-neon-gold), 0 0 10px var(--color-neon-gold);
+  text-shadow:
+    0 0 5px var(--color-neon-gold),
+    0 0 10px var(--color-neon-gold);
 }
 
 .glow-box {
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.2), inset 0 0 10px rgba(0, 255, 65, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
 }
 
 .glow-box-gold {
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2), inset 0 0 10px rgba(255, 215, 0, 0.1);
-}
-
-.pixel-corners {
-  clip-path: polygon(
-    0 4px, 4px 4px, 4px 0, 
-    calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px, 
-    100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%, 
-    4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
-  );
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-dark-bg);
-  border-left: 2px solid var(--color-neon-green);
 }
 ::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
   background: var(--color-neon-green);
 }
 
@@ -93,29 +105,49 @@ body {
   }
 }
 
-.health-bar-fill {
-  background: repeating-linear-gradient(
-    90deg,
-    var(--color-neon-green),
-    var(--color-neon-green) 10px,
-    transparent 10px,
-    transparent 12px
-  );
+.heart-beat {
+  animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
-.exp-bar-fill {
-  background: repeating-linear-gradient(
+@keyframes heartbeat {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+}
+
+.hp-bar-fill {
+  background: linear-gradient(
     90deg,
-    var(--color-neon-gold),
-    var(--color-neon-gold) 10px,
-    transparent 10px,
-    transparent 12px
+    var(--color-neon-green),
+    var(--color-neon-gold)
   );
 }
 
 @keyframes marquee {
-  0% { transform: translateX(100vw); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .animate-marquee {
